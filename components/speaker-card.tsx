@@ -26,18 +26,18 @@ export function SpeakerCard({ speaker }: SpeakerCardProps) {
 
   return (
     <Dialog>
-      <article className="bg-(--event-base-bg) p-5 text-(--event-base-text)">
+      <article className="border-4 border-(--event-tertiary-bg) bg-(--event-accent-bg) p-5 text-(--event-accent-text)">
         {speaker.image_url ? (
           <Image
             src={speaker.image_url}
             alt=""
             width={400}
             height={400}
-            className="mb-4 aspect-square w-full rounded-(--event-border-radius) object-cover"
+            className="mb-5 aspect-square w-full rounded-t-full border-b-4 border-(--event-tertiary-bg) object-cover"
           />
         ) : null}
-        <h3 className="text-xl font-semibold">{speaker.name}</h3>
-        <p className="mt-1 text-sm text-(--event-base-text)/60">
+        <h3 className="font-heading text-2xl font-bold uppercase leading-tight tracking-tight">{speaker.name}</h3>
+        <p className="mt-1 text-sm font-medium">
           {[speaker.title, speaker.company].filter(Boolean).join(", ")}
         </p>
         <div className="flex items-center justify-between gap-3 mt-3 ">
@@ -56,9 +56,7 @@ export function SpeakerCard({ speaker }: SpeakerCardProps) {
             ))}
           </div>
           {speaker.bio && (
-            <DialogTrigger className="text-sm font-medium text-(--event-secondary-bg) hover:text-(--event-secondary-bg-alt) transition-colors cursor-pointer">
-              More
-            </DialogTrigger>
+            <DialogTrigger className="cursor-pointer bg-(--event-secondary-bg) px-3 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-(--event-secondary-text) transition-colors hover:bg-(--event-tertiary-bg)">Bio</DialogTrigger>
           )}
         </div>
       </article>

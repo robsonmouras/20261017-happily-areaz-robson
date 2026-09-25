@@ -125,19 +125,19 @@ function SessionAccordion({
           session.location;
 
         return (
-          <AccordionItem value={session.id} key={session.id}>
+          <AccordionItem value={session.id} key={session.id} className="border-b-4 border-(--event-accent-text)/80 last:border-b-4">
             <AccordionTrigger
               disabled={!hasContent}
-              className="w-full no-underline hover:no-underline md:grid md:grid-cols-10 md:gap-x-10 lg:gap-x-20"
+              className="w-full py-5 no-underline hover:no-underline md:grid md:grid-cols-10 md:gap-x-10 lg:gap-x-20"
             >
-              <div className="font-heading hidden text-sm md:col-span-3 md:flex md:flex-col md:text-lg lg:text-xl">
+              <div className="font-heading hidden text-sm font-bold md:col-span-3 md:flex md:flex-col md:text-lg lg:text-xl">
                 <p className="text-left">{timeLabel}</p>
               </div>
               <div className="flex w-full flex-col items-start text-left md:col-span-6">
                 <p className="font-heading text-left text-sm md:hidden">
                   {timeLabel}
                 </p>
-                <p className="text-base font-semibold tracking-wider md:text-lg lg:text-xl">
+                <p className="font-heading text-lg font-bold uppercase tracking-tight md:text-xl lg:text-2xl">
                   {session.name}
                 </p>
               </div>
@@ -147,7 +147,7 @@ function SessionAccordion({
                 {track && (
                   <Badge
                     variant="secondary"
-                    className="cursor-auto rounded-sm font-normal"
+                    className="cursor-auto rounded-none bg-(--event-secondary-bg) font-heading font-bold uppercase tracking-wider text-(--event-secondary-text)"
                   >
                     {track.name}
                   </Badge>
@@ -155,7 +155,7 @@ function SessionAccordion({
                 {session.location && (
                   <Badge
                     variant="secondary"
-                    className="cursor-auto rounded-sm font-normal"
+                    className="cursor-auto rounded-none bg-(--event-tertiary-bg) font-heading font-bold uppercase tracking-wider text-(--event-tertiary-text)"
                   >
                     {session.location}
                   </Badge>
@@ -224,7 +224,7 @@ export function AgendaList({
       <Tabs defaultValue={days[0][0]}>
         <TabsList
           variant="line"
-          className="size-full justify-start overflow-x-auto"
+          className="size-full justify-start overflow-visible"
         >
           {days.map(([dayLabel]) => (
             <TabsTrigger

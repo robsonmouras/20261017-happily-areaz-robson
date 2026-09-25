@@ -82,3 +82,18 @@ export function eventTimeRange(event: PublicEventData["event"]) {
 export function ordered<T extends { order: number | null }>(items: T[]) {
   return [...items].sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
+
+type SectionKey = "about" | "agenda" | "speakers" | "host" | "sponsors" | "faq";
+
+// The API returns these display toggles, but the generated schema doesn't
+// describe them yet, so they're typed here.
+type DisplayToggles = {
+  navLinks?: Partial<
+    Record<SectionKey, { text?: string | null; display?: boolean | null }>
+  >;
+  sections?: Partial<Record<SectionKey, { display?: boolean | null }>>;
+};
+
+export function displayToggles(event: PublicEventData["event"]) {
+  return event.display_settings as DisplayToggles;
+}
