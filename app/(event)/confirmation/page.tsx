@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { AttendeesList } from "@/components/attendees-list";
+import { GeoStrip } from "@/components/geo";
 import { Container } from "@/components/container";
 import { EventDetails } from "@/components/event-details";
 import { text } from "@/components/helpers";
@@ -47,10 +48,10 @@ export default async function ConfirmationPage() {
               alt=""
               width={800}
               height={600}
-              className="mb-8 aspect-4/3 w-full rounded-(--event-border-radius) object-cover"
+              className="mb-8 aspect-4/3 w-full border-4 border-(--event-tertiary-bg) object-cover"
             />
           ) : null}
-          <h1 className="text-5xl font-semibold">
+          <h1 className="mt-3 font-heading text-5xl font-bold uppercase leading-none tracking-tight sm:text-7xl">
             {text(content.confirmationTitle, "You're registered")}
           </h1>
           <EventDetails event={event} />
@@ -71,6 +72,7 @@ export default async function ConfirmationPage() {
           />
         ) : null}
       </Container>
+    <GeoStrip />
     </main>
   );
 }

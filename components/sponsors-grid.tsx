@@ -32,7 +32,7 @@ function SponsorCard({
 
   const content = (
     <div
-      className="relative flex items-center justify-center overflow-hidden"
+      className="relative flex items-center justify-center overflow-hidden px-2 font-heading font-bold uppercase tracking-tight"
       style={{ height: `${logoHeight}px`, maxWidth: `${maxWidth}px` }}
     >
       {sponsor.logo_url ? (

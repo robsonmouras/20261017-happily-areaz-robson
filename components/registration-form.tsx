@@ -34,6 +34,9 @@ type RegistrationFormProps = {
   onSuccess?: () => void;
 };
 
+const fieldClass =
+  "rounded-(--event-border-radius) border-2 border-(--event-tertiary-bg) bg-white text-black placeholder:text-black/50";
+
 const initialState: RegistrationState = {
   ok: false,
 };
@@ -106,8 +109,8 @@ export function RegistrationForm({
       action={formAction}
       className={
         singleField
-          ? "mx-auto flex w-full max-w-lg flex-col gap-4"
-          : "flex w-full flex-col gap-x-5 gap-y-3 md:grid md:grid-cols-2"
+          ? "mx-auto flex w-full max-w-lg flex-col gap-4 text-left"
+          : "flex w-full flex-col gap-x-6 gap-y-5 text-left md:grid md:grid-cols-2"
       }
     >
       {fields.map((field) => {
@@ -115,12 +118,13 @@ export function RegistrationForm({
 
         return (
           <div key={field.id} className="grid w-full gap-1.5">
-            <Label htmlFor={field.id}>
+            <Label htmlFor={field.id} className="font-heading text-xs font-bold uppercase tracking-[0.16em]">
               {field.title}
               {field.required ? " *" : ""}
             </Label>
             {field.inputType === "textarea" ? (
               <Textarea
+                className={fieldClass}
                 id={field.id}
                 name={name}
                 required={field.required}
@@ -131,7 +135,7 @@ export function RegistrationForm({
               field.inputType === "radio" ||
               field.inputType === "dropdown" ? (
               <Select name={name} required={field.required}>
-                <SelectTrigger id={field.id} className="w-full">
+                <SelectTrigger id={field.id} className={`h-11 w-full ${fieldClass}`}>
                   <SelectValue placeholder="Select an option" />
                 </SelectTrigger>
                 <SelectContent>
@@ -143,13 +147,14 @@ export function RegistrationForm({
                 </SelectContent>
               </Select>
             ) : field.inputType === "checkbox" && field.items?.enum?.length ? (
-              <div className="grid gap-2 rounded-md p-3">
+              <div className="grid gap-3 py-2">
                 {field.items.enum.map((option) => (
                   <div
                     key={option}
                     className="flex items-center text-left gap-2"
                   >
                     <Checkbox
+                      className="size-5 rounded-none border-2 border-(--event-tertiary-bg) bg-white"
                       id={`${field.id}-${option}`}
                       name={name}
                       value={option}
@@ -165,6 +170,7 @@ export function RegistrationForm({
               </div>
             ) : (
               <Input
+                className={`h-11 ${fieldClass}`}
                 id={field.id}
                 name={name}
                 type={fieldInputType(field.inputType)}
@@ -191,7 +197,7 @@ export function RegistrationForm({
           type="submit"
           disabled={isPending}
           size="lg"
-          className="min-h-12 min-w-48 rounded-(--event-border-radius) bg-(--event-primary-bg) text-base font-semibold text-(--event-primary-text) hover:bg-(--event-primary-bg)/85"
+          className="h-auto min-h-14 min-w-56 rounded-(--event-border-radius) bg-(--event-accent-bg) px-8 py-3 font-heading text-base font-bold uppercase tracking-wider text-(--event-accent-text) hover:bg-(--event-primary-bg) hover:text-(--event-primary-text)"
         >
           {isPending
             ? "Submitting..."

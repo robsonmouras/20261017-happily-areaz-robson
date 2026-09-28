@@ -55,7 +55,7 @@ export function MobileMenu({ nav, ctaText, ctaHref }: MobileMenuProps) {
                 href={link.href}
                 onClick={() => !link.href.includes("#") && setOpen(false)}
                 onAfterScroll={() => setOpen(false)}
-                className="rounded-md px-3 py-2.5 text-base font-medium hover:bg-(--event-base-text)/5"
+                className="border-b-2 border-(--event-tertiary-bg) px-1 py-4 font-heading text-2xl font-bold uppercase tracking-tight"
               >
                 {link.label}
               </ScrollLink>
@@ -67,7 +67,7 @@ export function MobileMenu({ nav, ctaText, ctaHref }: MobileMenuProps) {
               <ScrollLink
                 href={ctaHref}
                 onAfterScroll={() => setOpen(false)}
-                className="block rounded-(--event-border-radius) bg-(--event-primary-bg) px-4 py-3 text-center font-semibold text-(--event-primary-text)"
+                className="block rounded-(--event-border-radius) bg-(--event-primary-bg) px-4 py-4 text-center font-heading font-bold uppercase tracking-wider text-(--event-primary-text)"
               >
                 {ctaText}
               </ScrollLink>

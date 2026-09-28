@@ -10,6 +10,7 @@ import { Navbar } from "./navbar";
 type HeaderProps = {
   logo?: string | null;
   logoAlt?: string;
+  name: string;
   nav: NavLinkItem[];
   ctaText?: string;
   ctaHref?: string;
@@ -19,6 +20,7 @@ type HeaderProps = {
 export function Header({
   logo,
   logoAlt = "Logo",
+  name,
   nav,
   ctaText,
   ctaHref,
@@ -29,22 +31,37 @@ export function Header({
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-(--event-base-text)/10 bg-(--event-base-bg)/90 backdrop-blur">
-      <div className="mx-auto flex h-28 max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-8">
-        <div className="relative z-60 flex w-full max-w-40.5 items-center sm:max-w-53">
-          {logo && (
-            <Link href="/">
-              <Image
-                src={logo}
-                alt={logoAlt}
-                width={250}
-                height={100}
-                className="relative z-60 max-h-12 w-full object-contain object-left"
-                draggable={false}
-              />
-            </Link>
+    <header className="sticky top-0 z-40 border-b-4 border-(--event-tertiary-bg) bg-(--event-base-bg)">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-8">
+        <Link
+          href="/"
+          className="relative z-60 flex items-center gap-3"
+          aria-label={name}
+        >
+          {logo ? (
+            <Image
+              src={logo}
+              alt={logoAlt}
+              width={250}
+              height={100}
+              className="max-h-12 w-auto object-contain object-left"
+              draggable={false}
+            />
+          ) : (
+            <>
+              {/* Wordmark stand-in until the event has a logo. */}
+              <span
+                aria-hidden="true"
+                className="relative size-9 shrink-0 overflow-hidden rounded-full bg-(--event-primary-bg)"
+              >
+                <span className="absolute inset-y-0 left-1/2 w-1/2 bg-(--event-secondary-bg)" />
+              </span>
+              <span className="font-heading text-2xl font-bold uppercase tracking-tighter">
+                {name}
+              </span>
+            </>
           )}
-        </div>
+        </Link>
 
         <Navbar nav={nav} ctaText={ctaText} ctaHref={ctaHref} />
         <div className="md:hidden">
